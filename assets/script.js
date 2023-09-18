@@ -19,15 +19,16 @@ const slides = [
 
 
 // Étape 1: Ajout de la variable messlides avec une valeur initiale de 1
-let messlides = 1;
+let messlides = 0;
+
 
 // Étape 2: Sélection des éléments HTML avec les classes '.banner-img' et '.tag-line'
 const imageElement = document.querySelector('.banner-img');
 const tagLineElement = document.querySelector('.tag-line');
 
 // Étape 3: Création d'une fonction pour les dot
-function currentSlide(n) {
-	updateSlide(messlides = n);
+function currentSlide() {
+	updateSlide();
 };
 
 // Étape 4: Création d'une fonction pour mettre à jour l'image actuelle
@@ -42,7 +43,7 @@ function updateSlide() {
 			dots[i].classList.remove('dot_selected');
 		}
 		// Ajouter "dot_selected" sur le point cliqué
-		dots[messlides - 1].classList.add('dot_selected');
+		dots[messlides - 0].classList.add('dot_selected');
 }
 
 // Afficher la première image au chargement
