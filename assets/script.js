@@ -18,7 +18,7 @@ const slides = [
 ]
 
 
-// Étape 1: Ajout de la variable messlides avec une valeur initiale de 1
+// Étape 1: Ajout de la variable messlides avec une valeur initiale de 0
 let messlides = 0;
 
 
@@ -26,10 +26,18 @@ let messlides = 0;
 const imageElement = document.querySelector('.banner-img');
 const tagLineElement = document.querySelector('.tag-line');
 
-// Étape 3: Création d'une fonction pour les dot
-function currentSlide() {
-	updateSlide();
-};
+// Étape 3: Création du dots
+let dotContainer = document.querySelector('.dots')
+
+slides.forEach((slide, index) => {
+	let dot = document.createElement('div')
+	dot.classList.add('dot')
+	dot.addEventListener('click', function(){
+		messlides = index
+		updateSlide()
+	})
+	dotContainer.appendChild(dot)
+})
 
 // Étape 4: Création d'une fonction pour mettre à jour l'image actuelle
 function updateSlide() {
