@@ -17,63 +17,47 @@ const slides = [
 	}
 ]
 
-let messlides = 0;
 
+// Étape 1: Ajout de la variable messlides avec une valeur initiale de 1
+let messlides = 1;
+
+// Étape 2: Sélection des éléments HTML avec les classes '.banner-img' et '.tag-line'
 const imageElement = document.querySelector('.banner-img');
 const tagLineElement = document.querySelector('.tag-line');
 
+// Étape 3: Création d'une fonction pour les dot
+function currentSlide(n) {
+	updateSlide(messlides = n);
+};
+
+// Étape 4: Création d'une fonction pour mettre à jour l'image actuelle
 function updateSlide() {
     const slide = slides[messlides];
+	let dots = document.getElementsByClassName('dot');
     imageElement.src = `./assets/images/slideshow/${slide.image}`;
     tagLineElement.innerHTML = slide.tagLine;
+
+		// Retirer "dot_selected" de tous les points
+		for (let i = 0; i < dots.length; i++) {
+			dots[i].classList.remove('dot_selected');
+		}
+		// Ajouter "dot_selected" sur le point cliqué
+		dots[messlides - 1].classList.add('dot_selected');
 }
 
-// Afficher la première diapositive au chargement
+// Afficher la première image au chargement
 updateSlide();
 
+// Étape 5: Création de la fonction pour afficher l'image suivante
 function nextSlide() {
     messlides = (messlides + 1) % slides.length;
     updateSlide();
 }
-
+// Étape 6: Création de la fonction pour afficher l'image précédent
 function prevSlide() {
     messlides = (messlides - 1 + slides.length) % slides.length;
     updateSlide();
 }
-
-document.getElementById('precedant').addEventListener('click', prevSlide);
+// Étape 7: Ajout des boutons "Précédent" et "Suivant"
+document.getElementById('precedent').addEventListener('click', prevSlide);
 document.getElementById('suivant').addEventListener('click', nextSlide);
-
-
-
-let slideIndex = 1;
-showSlides(slideIndex);
-
-
-// n c'est 1
-function currentSlide(n) {
-	showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-
-	const dots = document.getElementsByClassName('dot');
-
-	
-	// Cacher toutes les slides sur le site
-	for (let i = 0; i < slides.length; i++) {
-		slides[i].style.display = "none";
-	}
-	// Afficher la slide
-	slides[slideIndex - 1].style.display = 'block';
-
-	// Retirer "dot_selected" de tous les points
-	for (let i = 0; i < dots.length; i++) {
-		dots[i].classList.remove('dot_selected');
-	}
-	// Ajouter "dot_selected" sur le point cliqué
-	dots[mslideIndex - 1].classList.add('dot_selected');
-
-}
-
-
